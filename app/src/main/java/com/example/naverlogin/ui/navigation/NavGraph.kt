@@ -6,7 +6,7 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import com.example.naverlogin.ui.home.HomeScreen
-import com.example.naverlogin.ui.login.LoginScreen
+import com.example.naverlogin.ui.login.LoginRoot
 
 @Composable
 fun NavGraph(modifier: Modifier = Modifier) {
@@ -20,13 +20,17 @@ fun NavGraph(modifier: Modifier = Modifier) {
             entry<Route.Home> {
                 HomeScreen(
                     onNavigateSignIn = {
-                        backstack.clear()
                         backstack.add(Route.Login)
                     }
                 )
             }
             entry<Route.Login> {
-                LoginScreen()
+                LoginRoot(
+                    onNavigateToMain = {
+                        backstack.clear()
+                        backstack.add(Route.Home)
+                    }
+                )
             }
         }
     )

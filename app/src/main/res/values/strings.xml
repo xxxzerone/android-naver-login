@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AndroidNaverLogin</string>
+    <string name="login_naver">네이버 로그인</string>
 </resources>

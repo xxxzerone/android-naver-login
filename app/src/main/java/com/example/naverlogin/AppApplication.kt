@@ -1,6 +1,10 @@
 package com.example.naverlogin
 
 import android.app.Application
+import com.example.naverlogin.di.appModule
+import com.example.naverlogin.di.dataSourceModule
+import com.example.naverlogin.di.repositoryModule
+import com.example.naverlogin.di.viewModelModule
 import com.navercorp.nid.NidOAuth
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -20,7 +24,12 @@ class AppApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@AppApplication)
-            modules()
+            modules(
+                appModule,
+                dataSourceModule,
+                repositoryModule,
+                viewModelModule
+            )
         }
     }
 }
