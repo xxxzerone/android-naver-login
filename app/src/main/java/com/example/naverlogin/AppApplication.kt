@@ -3,6 +3,7 @@ package com.example.naverlogin
 import android.app.Application
 import com.example.naverlogin.di.appModule
 import com.example.naverlogin.di.dataSourceModule
+import com.example.naverlogin.di.networkModule
 import com.example.naverlogin.di.repositoryModule
 import com.example.naverlogin.di.viewModelModule
 import com.navercorp.nid.NidOAuth
@@ -26,6 +27,7 @@ class AppApplication : Application() {
             androidContext(this@AppApplication)
             modules(
                 appModule,
+                networkModule,
                 dataSourceModule,
                 repositoryModule,
                 viewModelModule

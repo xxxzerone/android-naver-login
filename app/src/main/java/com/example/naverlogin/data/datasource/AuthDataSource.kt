@@ -7,4 +7,5 @@ interface AuthDataSource {
     suspend fun login(context: Context): Result<String>
     suspend fun logout(): Result<Unit>
     fun getValidToken(): String?
+    suspend fun disconnect(): Result<Unit>
 }

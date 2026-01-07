@@ -1,6 +1,7 @@
 package com.example.naverlogin.data.datasource
 
 import android.content.Context
+import android.util.Log
 import com.navercorp.nid.NidOAuth
 import com.navercorp.nid.oauth.util.NidOAuthCallback
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -26,6 +27,8 @@ class NaverLoginDataSource : AuthDataSource {
     override suspend fun logout(): Result<Unit> = suspendCancellableCoroutine { continuation ->
         NidOAuth.logout(object : NidOAuthCallback {
             override fun onSuccess() {
+                Log.d("NAVER", "logout success")
+                Log.d("NAVER", "token after logout = ${NidOAuth.getAccessToken()}")
                 continuation.resume(Result.success(Unit))
             }
             override fun onFailure(errorCode: String, errorDesc: String) {
@@ -39,7 +42,7 @@ class NaverLoginDataSource : AuthDataSource {
     }
 
     // 연동 해제 (네이버 서비스와 앱의 연결을 완전히 끊음)
-    suspend fun disconnect(): Result<Unit> = suspendCancellableCoroutine { continuation ->
+    override suspend fun disconnect(): Result<Unit> = suspendCancellableCoroutine { continuation ->
         NidOAuth.disconnect(object : NidOAuthCallback {
             override fun onSuccess() {
                 continuation.resume(Result.success(Unit))

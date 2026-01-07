@@ -1,6 +1,7 @@
 package com.example.naverlogin.ui.login
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.naverlogin.domain.repository.AuthRepository
@@ -30,7 +31,9 @@ class LoginViewModel(
 
     private fun checkAutoLogin() {
         viewModelScope.launch {
-            if (repository.checkAutoLogin()) {
+            val checkAutoLogin = repository.checkAutoLogin()
+            Log.d("CheckAutoLogin", "$checkAutoLogin")
+            if (checkAutoLogin) {
                 _event.emit(LoginEvent.NavigateToMain)
             }
         }

@@ -5,5 +5,12 @@ import com.example.naverlogin.domain.repository.AuthRepository
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    single<AuthRepository> { AuthRepositoryImpl(get(), get()) }
+    single<AuthRepository> {
+        AuthRepositoryImpl(
+            dataSource = get(),
+            tokenManager = get(),
+            firebaseAuth = get(),
+            authService = get()
+        )
+    }
 }
